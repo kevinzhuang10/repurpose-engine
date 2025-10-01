@@ -183,17 +183,20 @@ A clean, premium web app that accepts a transcript (paste-only for MVP) and gene
 
 **Total: 8-12 hours (weekend project)**
 
+### Development Approach: UI-First
+Building the UI with dummy data first, then connecting to API later. This allows for faster iteration on design and user experience.
+
 ### Saturday (4-6 hours)
-- Hour 1-2: Homepage UI with input options
-- Hour 2-3: Transcript textarea component
-- Hour 3-4: Results page layout
-- Hour 4-6: Polish and responsive design
+- Hour 1-2: Homepage UI with input options ✅
+- Hour 2-3: Results page layout with dummy data (3 card types)
+- Hour 3-4: Copy-to-clipboard functionality
+- Hour 4-6: Responsive design and polish
 
 ### Sunday (4-6 hours)
-- Hour 1-2: Claude API integration setup
-- Hour 2-4: Prompt engineering and content generation
-- Hour 4-5: Testing and bug fixes
-- Hour 5-6: Visual QA and deployment
+- Hour 1-2: Textarea validation and character counter
+- Hour 2-3: Claude API integration setup
+- Hour 3-5: Connect UI to API, prompt engineering
+- Hour 5-6: Testing, bug fixes, and deployment
 
 ---
 
