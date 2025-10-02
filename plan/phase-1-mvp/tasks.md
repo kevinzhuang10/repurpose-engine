@@ -1,6 +1,6 @@
 # Development Progress
 
-**Last Updated**: 2025-10-01
+**Last Updated**: 2025-10-02
 
 ---
 
@@ -90,24 +90,46 @@
    - Mobile responsive testing
    - Console error checks
 
-2. Content prompting
+2. **Bottom Action Widget** ✅ (Complete)
+   - ✅ Install shadcn/ui Dialog component (@radix-ui/react-dialog)
+   - ✅ Create `<BottomActionWidget />` component with fixed bottom positioning
+   - ✅ Create `<PromptLibraryModal />` for browsing additional content types
+   - ✅ Create `<ConfirmationModal />` for Start Over action
+   - ✅ Refactor state management to support dynamic content types
+   - ✅ Implement dynamic card rendering for new content types
+   - ✅ Update API route to handle new content types
+   - ✅ Design: Fixed bottom with backdrop blur, content scrolls behind
+   - ✅ Behavior: "+ New Prompt" (large button) adds new result card, "Start Over" (small button) with confirmation
+   - ✅ Mobile responsive with proper touch targets
+
+   **Implementation Details:**
+   - Created content type configuration system (`/src/config/contentTypes.ts`)
+   - Built reusable `<ContentCard />` component for all content types
+   - Completely refactored state management to support dynamic content types
+   - Added mock data for 6 new content types (LinkedIn Post, X Thread, Threads Post, Titles, YouTube Description, Timestamped Overview)
+   - Widget anchored to bottom with backdrop blur and gradient fade
+   - Filters already-active content types from prompt library
+   - Full copy/regenerate/version navigation for all dynamically added cards
+
+3. Content prompting
    - Add additional content types
    - Fine tune prompts to get better results
    - edit prompt / show underlying prompt & sample
 
 
-Content types
+**Available Content Types:**
+- Social Media Posts (existing)
+- Summary & Show Notes (existing)
+- Key Quotes (existing)
 - LinkedIn post
 - X thread
-- Theads post (Meta) 
+- Threads post (Meta)
 - Titles (5 different titles)
 - YouTube descriptions
 - Timestamped overview
-- Summary
-- Highlight quotes
 
 
-3. **Deploy**
+4. **Deploy**
    - Deploy to Vercel
 
 
