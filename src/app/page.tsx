@@ -9,6 +9,7 @@ import {
   RefreshCw,
   ChevronLeft,
   ChevronRight,
+  RotateCcw,
 } from "lucide-react";
 import {
   Tooltip,
@@ -144,6 +145,22 @@ export default function Home() {
     }));
   };
 
+  const handleStartOver = () => {
+    setTranscript("");
+    setContentHistory({
+      socialPosts: [],
+      summary: [],
+      quotes: [],
+    });
+    setCurrentVersions({
+      socialPosts: 0,
+      summary: 0,
+      quotes: 0,
+    });
+    setShowResults(false);
+    setError(null);
+  };
+
   // Get current content for each type
   const currentSocialPosts =
     contentHistory.socialPosts.length > 0
@@ -186,7 +203,8 @@ export default function Home() {
         </div>
 
         {/* Input Options */}
-        <div className="grid sm:grid-cols-2 gap-4 mb-8">
+        {!showResults && (
+          <div className="grid sm:grid-cols-2 gap-4 mb-8">
           {/* File Upload - Disabled */}
           <button
             disabled
@@ -237,10 +255,11 @@ export default function Home() {
               </div>
             </div>
           </button>
-        </div>
+          </div>
+        )}
 
         {/* Transcript Input Area */}
-        {selectedOption === "paste" && (
+        {selectedOption === "paste" && !showResults && (
           <div className="animate-in fade-in slide-in-from-top-2 duration-300 mb-8">
             <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
               <label
@@ -278,9 +297,25 @@ export default function Home() {
         {showResults && (
           <TooltipProvider delayDuration={0}>
             <div className="mt-16">
-              <h2 className="text-2xl font-semibold tracking-tight mb-6">
-                Output
-              </h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold tracking-tight">
+                  Output
+                </h2>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={handleStartOver}
+                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      Start Over
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Clear all and start over</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
               <div className="space-y-6">
               {/* Social Posts Card */}
               <div className="rounded-lg border border-border bg-background shadow-sm">

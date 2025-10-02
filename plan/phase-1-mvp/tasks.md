@@ -1,6 +1,6 @@
 # Development Progress
 
-**Last Updated**: 2025-10-02
+**Last Updated**: 2025-10-01
 
 ---
 
@@ -72,13 +72,21 @@
    - Previous/Next buttons properly disabled at boundaries
    - Navigate between versions to compare different generations
 
+9. **Start Over functionality** ✨
+   - "Start Over" button in Output header with RotateCcw icon
+   - Instant tooltip: "Clear all and start over"
+   - Resets all state: transcript, content history, versions
+   - Input option cards (Upload/Paste) hidden when results showing
+   - Transcript input area hidden when results showing
+   - Clean, focused results view with single action to restart
+
 ---
 
 ## 🔄 Next Tasks (In Order)
 
 1. **Polish & test**
    - ✅ add tooltip to control buttons (copy, retry, previous, next) - using shadcn/ui tooltips with instant appearance
-   - add elegant way for user to start over
+   - ✅ add elegant way for user to start over - "Start Over" button in Output header, hides input options when results showing
    - Mobile responsive testing
    - Console error checks
 
