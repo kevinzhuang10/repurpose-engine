@@ -46,26 +46,62 @@
    - Environment variable: `ANTHROPIC_API_KEY` in `.env.local`
    - End-to-end tested: ~30 second generation time ✅
 
+6. **Single-page experience with per-card loading** ✨
+   - Converted from two-page to single-page layout
+   - Input area at top, results cards appear below on same page
+   - Each content card has independent loading state
+   - Separate API calls per content type (parallel execution)
+   - Loading spinner animations for each card
+   - Regenerate button per card with loading state
+   - Copy-to-clipboard functionality working
+   - API route supports both individual content type generation and all-at-once (legacy)
+
+7. **Test mode for development** ✨
+   - Environment variable: `ENABLE_TEST_MODE=true` in `.env.local`
+   - Uses mock data instead of real API calls (saves credits during testing)
+   - Simulates realistic 1.5s delay per content type
+   - Console logs show "⚠️ TEST MODE" warnings
+   - `.env.local.example` file created with documentation
+   - Set to `false` or remove variable to use real API
+
+8. **Version tracking and navigation** ✨
+   - Each content card tracks version history independently
+   - Version navigation UI (◀ 1/X ▶) in top-right of each card
+   - Shows "1/1" for single version, updates as more versions created
+   - Auto-jumps to newest version when regenerating (e.g., 1/1 → 2/2)
+   - Previous/Next buttons properly disabled at boundaries
+   - Navigate between versions to compare different generations
+
 ---
 
 ## 🔄 Next Tasks (In Order)
 
-1. **Add input validation** (Optional enhancement)
-   - Live character counter (X / 50,000)
-   - Minimum character validation (e.g., 50 chars minimum)
-   - Better validation messages
-
-2. **Polish & test**
+1. **Polish & test**
+   - ✅ add tooltip to control buttons (copy, retry, previous, next) - using shadcn/ui tooltips with instant appearance
+   - add elegant way for user to start over
    - Mobile responsive testing
    - Console error checks
-   - Test with various transcript lengths
+
+2. Content prompting
+   - Add additional content types
+   - Fine tune prompts to get better results
+   - edit prompt / show underlying prompt & sample
+
+
+Content types
+- LinkedIn post
+- X thread
+- Theads post (Meta) 
+- Titles (5 different titles)
+- YouTube descriptions
+- Timestamped overview
+- Summary
+- Highlight quotes
+
+
+3. **Deploy**
    - Deploy to Vercel
 
-3. **Optional enhancements**
-   - Add loading progress indicator
-   - Regenerate specific content types
-   - Download/export functionality
-   - Share generated content
 
 ---
 
