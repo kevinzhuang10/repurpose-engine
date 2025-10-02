@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Copy, Check, ArrowLeft, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // Dummy data for UI development - multiple versions per content type
 const DUMMY_DATA = {
@@ -72,13 +73,49 @@ const DUMMY_DATA = {
   ]
 };
 
+interface GeneratedContent {
+  socialPosts: string[];
+  summary: string;
+  quotes: string[];
+}
+
 export default function ResultsPage() {
+  const router = useRouter();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [currentVersions, setCurrentVersions] = useState({
     socialPosts: 0,
     summary: 0,
     quotes: 0
   });
+  const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [contentHistory, setContentHistory] = useState<{
+    socialPosts: string[][];
+    summary: string[];
+    quotes: string[][];
+  }>({
+    socialPosts: [],
+    summary: [],
+    quotes: []
+  });
+
+  useEffect(() => {
+    // Load generated content from sessionStorage
+    const storedContent = sessionStorage.getItem('generatedContent');
+    if (storedContent) {
+      const content = JSON.parse(storedContent) as GeneratedContent;
+      setGeneratedContent(content);
+
+      // Initialize history with the first version
+      setContentHistory({
+        socialPosts: [content.socialPosts],
+        summary: [content.summary],
+        quotes: [content.quotes]
+      });
+    } else {
+      // If no content, redirect to home
+      router.push('/');
+    }
+  }, [router]);
 
   const copyToClipboard = async (text: string, id: string) => {
     try {
@@ -90,13 +127,13 @@ export default function ResultsPage() {
     }
   };
 
-  const regenerate = (type: 'socialPosts' | 'summary' | 'quotes') => {
-    // In future, this will trigger API call
+  const regenerate = async (type: 'socialPosts' | 'summary' | 'quotes') => {
+    // TODO: In future, this will trigger API call to regenerate specific content type
     console.log(`Regenerating ${type}...`);
   };
 
   const changeVersion = (type: 'socialPosts' | 'summary' | 'quotes', direction: 'prev' | 'next') => {
-    const maxVersions = DUMMY_DATA[type].length;
+    const maxVersions = contentHistory[type].length;
     setCurrentVersions(prev => ({
       ...prev,
       [type]: direction === 'next'
@@ -105,13 +142,35 @@ export default function ResultsPage() {
     }));
   };
 
-  const currentSocialPosts = DUMMY_DATA.socialPosts[currentVersions.socialPosts];
-  const currentSummary = DUMMY_DATA.summary[currentVersions.summary];
-  const currentQuotes = DUMMY_DATA.quotes[currentVersions.quotes];
+  // Use real data if available, otherwise fall back to dummy data
+  const currentSocialPosts = contentHistory.socialPosts.length > 0
+    ? contentHistory.socialPosts[currentVersions.socialPosts]
+    : DUMMY_DATA.socialPosts[currentVersions.socialPosts];
+
+  const currentSummary = contentHistory.summary.length > 0
+    ? contentHistory.summary[currentVersions.summary]
+    : DUMMY_DATA.summary[currentVersions.summary];
+
+  const currentQuotes = contentHistory.quotes.length > 0
+    ? contentHistory.quotes[currentVersions.quotes]
+    : DUMMY_DATA.quotes[currentVersions.quotes];
 
   // Merge social posts into single text area
-  const mergedSocialPosts = currentSocialPosts.join('\n\n---\n\n');
-  const mergedQuotes = currentQuotes.map((q, i) => `${i + 1}. "${q}"`).join('\n\n');
+  const mergedSocialPosts = Array.isArray(currentSocialPosts)
+    ? currentSocialPosts.join('\n\n---\n\n')
+    : '';
+  const mergedQuotes = Array.isArray(currentQuotes)
+    ? currentQuotes.map((q, i) => `${i + 1}. "${q}"`).join('\n\n')
+    : '';
+
+  // Show loading state while data is being loaded
+  if (!generatedContent && contentHistory.socialPosts.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen p-4 sm:p-8">
@@ -168,7 +227,7 @@ export default function ResultsPage() {
                     <ChevronLeft className="w-4 h-4 text-muted-foreground" />
                   </button>
                   <span className="text-sm text-muted-foreground min-w-[3rem] text-center">
-                    {currentVersions.socialPosts + 1} / {DUMMY_DATA.socialPosts.length}
+                    {currentVersions.socialPosts + 1} / {contentHistory.socialPosts.length || 1}
                   </span>
                   <button
                     onClick={() => changeVersion('socialPosts', 'next')}
@@ -223,7 +282,7 @@ export default function ResultsPage() {
                     <ChevronLeft className="w-4 h-4 text-muted-foreground" />
                   </button>
                   <span className="text-sm text-muted-foreground min-w-[3rem] text-center">
-                    {currentVersions.summary + 1} / {DUMMY_DATA.summary.length}
+                    {currentVersions.summary + 1} / {contentHistory.summary.length || 1}
                   </span>
                   <button
                     onClick={() => changeVersion('summary', 'next')}
@@ -278,7 +337,7 @@ export default function ResultsPage() {
                     <ChevronLeft className="w-4 h-4 text-muted-foreground" />
                   </button>
                   <span className="text-sm text-muted-foreground min-w-[3rem] text-center">
-                    {currentVersions.quotes + 1} / {DUMMY_DATA.quotes.length}
+                    {currentVersions.quotes + 1} / {contentHistory.quotes.length || 1}
                   </span>
                   <button
                     onClick={() => changeVersion('quotes', 'next')}
@@ -307,7 +366,7 @@ export default function ResultsPage() {
             href="/"
             className="px-6 py-2.5 bg-foreground text-background rounded-md font-medium text-sm hover:bg-foreground/90 transition-all duration-150"
           >
-            Create New Content
+            Start Over
           </Link>
         </div>
       </div>

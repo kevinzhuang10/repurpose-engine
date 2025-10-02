@@ -1,10 +1,46 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Upload, FileText } from 'lucide-react';
 
 export default function Home() {
   const [selectedOption, setSelectedOption] = useState<'upload' | 'paste'>('paste');
+  const [transcript, setTranscript] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleGenerate = async () => {
+    if (transcript.trim().length === 0) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transcript }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate content');
+      }
+
+      const data = await response.json();
+
+      // Store the generated content in sessionStorage to pass to results page
+      sessionStorage.setItem('generatedContent', JSON.stringify(data));
+
+      router.push('/results');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
@@ -80,6 +116,8 @@ export default function Home() {
               </label>
               <textarea
                 id="transcript"
+                value={transcript}
+                onChange={(e) => setTranscript(e.target.value)}
                 placeholder="Paste your transcript here... Include timestamps if available for better results."
                 className="w-full min-h-[300px] p-4 rounded-md border border-border bg-background text-base resize-y focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                 maxLength={50000}
@@ -89,11 +127,18 @@ export default function Home() {
                   Maximum 50,000 characters
                 </p>
                 <button
-                  className="px-6 py-2.5 bg-foreground text-background rounded-md font-medium text-sm hover:bg-foreground/90 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:ring-offset-2"
+                  onClick={handleGenerate}
+                  disabled={transcript.trim().length === 0 || isLoading}
+                  className="px-6 py-2.5 bg-foreground text-background rounded-md font-medium text-sm hover:bg-foreground/90 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-foreground"
                 >
-                  Generate Content
+                  {isLoading ? 'Generating...' : 'Generate Content'}
                 </button>
               </div>
+              {error && (
+                <p className="mt-3 text-sm text-red-600">
+                  {error}
+                </p>
+              )}
             </div>
           </div>
         )}
