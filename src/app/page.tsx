@@ -227,7 +227,7 @@ export default function Home() {
                 value={transcript}
                 onChange={(e) => setTranscript(e.target.value)}
                 placeholder="Paste your transcript here... Include timestamps if available for better results."
-                className="w-full min-h-[300px] p-4 rounded-md border border-border bg-background text-base resize-y focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
+                className="w-full min-h-[300px] p-4 rounded-md bg-background text-base resize-y focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
                 maxLength={50000}
               />
               <div className="flex items-center justify-between mt-4">

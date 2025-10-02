@@ -111,7 +111,13 @@
    - Filters already-active content types from prompt library
    - Full copy/regenerate/version navigation for all dynamically added cards
 
-3. Content prompting
+3. **Prompt Library with browsable categories** ✅
+   - Created prompt library JSON with 5 categories (LinkedIn, X/Twitter, YouTube, Podcast, Blog)
+   - Built large modal (90vw) with vertical scrolling layout
+   - Clean card design: play icon + "Run", hover-only settings icon
+   - Read-only prompt config viewer modal
+
+4. Content prompting
    - Add additional content types
    - Fine tune prompts to get better results
    - edit prompt / show underlying prompt & sample
