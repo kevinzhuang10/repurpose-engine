@@ -6,6 +6,7 @@ import {
   Hash,
   Youtube,
   Clock,
+  FileSearch,
 } from "lucide-react";
 
 export interface ContentTypeConfig {
@@ -19,13 +20,22 @@ export interface ContentTypeConfig {
 }
 
 export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
+  Overview: {
+    id: "Overview",
+    name: "Overview",
+    description: "Comprehensive analysis of the source content",
+    icon: FileSearch,
+    category: "general",
+    isDefault: true,
+    outputFormat: "string",
+  },
   socialPosts: {
     id: "socialPosts",
     name: "Social Media Posts",
     description: "Engaging social media posts",
     icon: MessageSquare,
     category: "social",
-    isDefault: true,
+    isDefault: false,
     outputFormat: "array",
   },
   summary: {
@@ -34,7 +44,7 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     description: "Comprehensive summary with takeaways",
     icon: FileText,
     category: "content",
-    isDefault: true,
+    isDefault: false,
     outputFormat: "string",
   },
   quotes: {
@@ -43,7 +53,7 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     description: "Memorable quotes from the content",
     icon: Quote,
     category: "content",
-    isDefault: true,
+    isDefault: false,
     outputFormat: "array",
   },
   linkedinPost: {

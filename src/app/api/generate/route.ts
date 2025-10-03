@@ -1,5 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextResponse } from 'next/server';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import type { PromptLibrary } from '@/types/promptLibrary';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -8,8 +11,54 @@ const anthropic = new Anthropic({
 // Test mode - set ENABLE_TEST_MODE=true in .env.local to use mock data
 const TEST_MODE = process.env.ENABLE_TEST_MODE === 'true';
 
+// Load prompt library
+function loadPromptLibrary(): PromptLibrary {
+  const filePath = join(process.cwd(), 'public', 'prompt-library.json');
+  const fileContents = readFileSync(filePath, 'utf8');
+  return JSON.parse(fileContents);
+}
+
+// Find prompt by name in the library
+function findPromptByName(promptName: string): string | null {
+  const library = loadPromptLibrary();
+  for (const category of library.useCaseCategories) {
+    const prompt = category.prompts.find(p => p.promptName === promptName);
+    if (prompt) {
+      return prompt.prompt;
+    }
+  }
+  return null;
+}
+
 // Mock data for testing without API calls
 const MOCK_DATA: Record<string, string | string[]> = {
+  Overview: `## Topic & Subject
+This content discusses productivity and content creation strategies, specifically focusing on the concept of content repurposing and working smarter rather than harder.
+
+## Key Themes
+1. **Efficiency over volume**: Doing less but more impactful work
+2. **Content repurposing**: Maximizing value from single pieces of content
+3. **Strategic workflows**: Building systems that amplify output
+4. **Focus management**: Protecting attention as a scarce resource
+5. **Tool optimization**: Using the right tools for automation
+
+## Content Structure
+This appears to be a short-form educational monologue or podcast segment, structured as:
+- Opening hook about content creation
+- Problem identification (working too hard)
+- Solution framework (repurposing strategy)
+- Actionable takeaway
+
+## Tone & Style
+- **Tone**: Educational yet conversational, motivational
+- **Style**: Direct, no-fluff communication with practical advice
+- **Approach**: Problem-solution format with clear action items
+
+## Key Insights
+- Content creation shouldn't mean starting from scratch every time
+- One quality source (transcript/recording) can fuel multiple content pieces
+- Working smarter means building systems, not just working harder
+- The goal is sustainable content creation that doesn't lead to burnout`,
   socialPosts: [
     "🚀 Just discovered the power of content repurposing!\n\nOne transcript → Multiple formats\n✅ Social posts\n✅ Summaries\n✅ Key quotes\n\nWork smarter, not harder 💪\n\n#ContentStrategy #ProductivityHack",
     "💡 Pro tip: Every podcast, video, or meeting transcript is a goldmine of content waiting to be unleashed.\n\nStop letting valuable content sit unused!\n\n#ContentMarketing #DigitalStrategy",
@@ -482,53 +531,24 @@ export async function POST(request: Request) {
 
 async function generateSpecificContent(
   transcript: string,
-  contentType: 'socialPosts' | 'summary' | 'quotes'
+  contentType: string
 ): Promise<string[] | string> {
-  let prompt = '';
+  // Try to find prompt in library
+  const libraryPrompt = findPromptByName(contentType);
 
-  switch (contentType) {
-    case 'socialPosts':
-      prompt = `You are a social media expert. Given the following transcript, create 3-5 engaging social media posts that can work across platforms (Twitter, LinkedIn, etc.). Include hooks, proper formatting, and relevant hashtags/emojis where appropriate.
-
-Format your response as a JSON object with this exact structure:
-{
-  "socialPosts": ["post1", "post2", "post3", ...]
-}
-
-Transcript:
-${transcript}
-
-Return ONLY the JSON object, no additional text.`;
-      break;
-
-    case 'summary':
-      prompt = `You are a content summarization expert. Given the following transcript, create a comprehensive summary with key takeaways in bullet-point format and actionable items. Include any timestamps if they're in the transcript.
-
-Format your response as a JSON object with this exact structure:
-{
-  "summary": "## Key Takeaways\\n\\n• Point 1\\n• Point 2\\n\\n## Action Items\\n\\n1. Item 1\\n2. Item 2"
-}
-
-Transcript:
-${transcript}
-
-Return ONLY the JSON object, no additional text.`;
-      break;
-
-    case 'quotes':
-      prompt = `You are a quote extraction expert. Given the following transcript, extract 3-5 of the most impactful and shareable quotes.
-
-Format your response as a JSON object with this exact structure:
-{
-  "quotes": ["quote1", "quote2", "quote3", ...]
-}
-
-Transcript:
-${transcript}
-
-Return ONLY the JSON object, no additional text.`;
-      break;
+  if (!libraryPrompt) {
+    throw new Error(`Unknown content type: ${contentType}`);
   }
+
+  const fullPrompt = `${libraryPrompt}
+
+Transcript:
+${transcript}
+
+Return ONLY the JSON object with this structure: { "${contentType}": <your_content> }
+If the content should be an array (like multiple posts or quotes), use an array.
+If it should be a single text (like a summary or overview), use a string.
+No additional text outside the JSON.`;
 
   const message = await anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
@@ -536,7 +556,7 @@ Return ONLY the JSON object, no additional text.`;
     messages: [
       {
         role: 'user',
-        content: prompt,
+        content: fullPrompt,
       },
     ],
   });

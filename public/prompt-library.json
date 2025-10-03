@@ -1,101 +1,116 @@
 {
-    "name": "Prompt Library",
-    "description": "A library of curated prompts to 10x your content creation",
-    "useCaseCategories": [
+  "name": "Prompt Library",
+  "description": "A library of curated prompts to 10x your content creation",
+  "useCaseCategories": [
+    {
+      "categoryName": "General",
+      "prompts": [
         {
-            "categoryName": "LinkedIn",
-            "prompts": [
-                {
-                    "promptName": "Punchy LinkedIn Post",
-                    "prompt": "Generate a punchy LinkedIn post based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "Thought provoking LinkedIn Post",
-                    "prompt": "Generate a thought provoking LinkedIn post based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "LinkedIn Post with a Question",
-                    "prompt": "Generate a LinkedIn post with a question based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                }
-            ]
+          "promptName": "Overview",
+          "prompt": "Analyze the source content and provide a comprehensive overview that includes:\n\n1. **Topic & Subject**: What is the main topic or subject matter?\n2. **Key Themes**: What are the 3-5 main themes or ideas discussed?\n3. **Content Structure**: What format is this (interview, monologue, panel discussion, etc.)? How is it organized?\n4. **Tone & Style**: What is the tone (educational, conversational, persuasive, etc.)? What's the speaking style?\n5. **Key Insights**: What are the most important takeaways or insights?\n\nProvide a clear, structured analysis that helps understand what this content is about at a glance.",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
         },
         {
-            "categoryName": "X / Twitter",
-            "prompts": [
-                {
-                    "promptName": "Punchy X Post",
-                    "prompt": "Generate a punchy X post based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "Thought provoking X Post",
-                    "prompt": "Generate a thought provoking X post based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "X Post with a Question",
-                    "prompt": "Generate a X post with a question based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                }
-            ]
+          "promptName": "Key Quotes",
+          "prompt": "Generate a list of key quotes from the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        }
+      ]
+    },
+    {
+      "categoryName": "LinkedIn",
+      "prompts": [
+        {
+          "promptName": "Punchy LinkedIn Post",
+          "prompt": "Generate a punchy LinkedIn post based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
         },
         {
-            "categoryName": "YouTube",
-            "prompts": [
-                {
-                    "promptName": "YouTube Description",
-                    "prompt": "Generate a YouTube description based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "10 viral YouTube Titles",
-                    "prompt": "Generate 10 viral YouTube titles based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "Timestamped Overview",
-                    "prompt": "Generate a timestamped overview based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                }
-            ]
+          "promptName": "Thought provoking LinkedIn Post",
+          "prompt": "Generate a thought provoking LinkedIn post based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
         },
         {
-            "categoryName": "Podcast",
-            "prompts": [
-                {
-                    "promptName": "Podcast Episode Summary",
-                    "prompt": "Generate a podcast episode summary based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "Podcast Episode Show Notes",
-                    "prompt": "Generate a podcast episode show notes based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "Eye catching Podcast titles",
-                    "prompt": "Generate 5 podcast titles based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                }
-            ]
+          "promptName": "LinkedIn Post with a Question",
+          "prompt": "Generate a LinkedIn post with a question based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        }
+      ]
+    },
+    {
+      "categoryName": "X / Twitter",
+      "prompts": [
+        {
+          "promptName": "Punchy X Post",
+          "prompt": "Generate a punchy X post based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
         },
         {
-            "categoryName": "Blog",
-            "prompts": [
-                {
-                    "promptName": "Blog Post",
-                    "prompt": "Generate a blog post based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                },
-                {
-                    "promptName": "Blog Post Titles",
-                    "prompt": "Generate 5 blog post titles based on the source content",
-                    "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
-                }
-            ]
-}
-    ]
+          "promptName": "Thought provoking X Post",
+          "prompt": "Generate a thought provoking X post based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        },
+        {
+          "promptName": "X Post with a Question",
+          "prompt": "Generate a X post with a question based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        }
+      ]
+    },
+    {
+      "categoryName": "YouTube",
+      "prompts": [
+        {
+          "promptName": "YouTube Description",
+          "prompt": "Generate a YouTube description based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        },
+        {
+          "promptName": "10 viral YouTube Titles",
+          "prompt": "Generate 10 viral YouTube titles based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        },
+        {
+          "promptName": "Timestamped Overview",
+          "prompt": "Generate a timestamped overview based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        }
+      ]
+    },
+    {
+      "categoryName": "Podcast",
+      "prompts": [
+        {
+          "promptName": "Podcast Episode Summary",
+          "prompt": "Generate a podcast episode summary based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        },
+        {
+          "promptName": "Podcast Episode Show Notes",
+          "prompt": "Generate a podcast episode show notes based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        },
+        {
+          "promptName": "Eye catching Podcast titles",
+          "prompt": "Generate 5 podcast titles based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        }
+      ]
+    },
+    {
+      "categoryName": "Blog",
+      "prompts": [
+        {
+          "promptName": "Blog Post",
+          "prompt": "Generate a blog post based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        },
+        {
+          "promptName": "Blog Post Titles",
+          "prompt": "Generate 5 blog post titles based on the source content",
+          "sampleContent": "Most people think content creation is about having something to say. That's backwards. The best content creators don't start with answers. They start with obsessions. They're curious about something most people ignore. They notice patterns others miss. They ask questions that sound obvious but nobody's actually answering. Then they share what they find. The content isn't the goal. The exploration is. Stop trying to create content. Start being curious in public."
+        }
+      ]
+    }
+  ]
 }

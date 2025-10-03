@@ -1,6 +1,12 @@
 "use client";
 
-import { Copy, Check, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Copy,
+  Check,
+  RefreshCw,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -42,16 +48,11 @@ export function ContentCard({
       : content
     : "";
 
-  const Icon = contentType.icon;
-
   return (
     <div className="rounded-lg border border-border bg-background shadow-sm">
       {/* Header with controls */}
       <div className="flex items-center justify-between p-4 border-b border-border">
-        <div className="flex items-center gap-2">
-          <Icon className="w-5 h-5 text-muted-foreground" />
-          <h2 className="text-lg font-semibold">{contentType.name}</h2>
-        </div>
+        <h2 className="text-lg font-semibold">{contentType.name}</h2>
         <div className="flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
@@ -133,9 +134,7 @@ export function ContentCard({
           <div className="flex items-center justify-center min-h-[300px]">
             <div className="text-center">
               <RefreshCw className="w-8 h-8 text-muted-foreground animate-spin mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">
-                Generating {contentType.name.toLowerCase()}...
-              </p>
+              <p className="text-sm text-muted-foreground">Generating...</p>
             </div>
           </div>
         ) : content ? (
@@ -147,7 +146,8 @@ export function ContentCard({
         ) : (
           <div className="flex items-center justify-center min-h-[300px]">
             <p className="text-sm text-muted-foreground">
-              Click "Generate Content" to create {contentType.name.toLowerCase()}
+              Click "Generate Content" to create{" "}
+              {contentType.name.toLowerCase()}
             </p>
           </div>
         )}

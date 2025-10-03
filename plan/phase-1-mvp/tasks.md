@@ -87,8 +87,6 @@
 1. **Polish & test**
    - ✅ add tooltip to control buttons (copy, retry, previous, next) - using shadcn/ui tooltips with instant appearance
    - ✅ add elegant way for user to start over - "Start Over" button in Output header, hides input options when results showing
-   - Mobile responsive testing
-   - Console error checks
 
 2. **Bottom Action Widget** ✅ (Complete)
    - ✅ Install shadcn/ui Dialog component (@radix-ui/react-dialog)
@@ -102,25 +100,30 @@
    - ✅ Behavior: "+ New Prompt" (large button) adds new result card, "Start Over" (small button) with confirmation
    - ✅ Mobile responsive with proper touch targets
 
-   **Implementation Details:**
-   - Created content type configuration system (`/src/config/contentTypes.ts`)
-   - Built reusable `<ContentCard />` component for all content types
-   - Completely refactored state management to support dynamic content types
-   - Added mock data for 6 new content types (LinkedIn Post, X Thread, Threads Post, Titles, YouTube Description, Timestamped Overview)
-   - Widget anchored to bottom with backdrop blur and gradient fade
-   - Filters already-active content types from prompt library
-   - Full copy/regenerate/version navigation for all dynamically added cards
-
 3. **Prompt Library with browsable categories** ✅
    - Created prompt library JSON with 5 categories (LinkedIn, X/Twitter, YouTube, Podcast, Blog)
    - Built large modal (90vw) with vertical scrolling layout
    - Clean card design: play icon + "Run", hover-only settings icon
    - Read-only prompt config viewer modal
 
-4. Content prompting
+4. **Refactor initial workflow** ✅ (Complete)
+   - ✅ Created "Overview" prompt in General category of prompt library
+   - ✅ Enhanced Overview prompt with structured analysis (Topic, Key Themes, Content Structure, Tone & Style, Key Insights)
+   - ✅ Set Overview as default content type (`isDefault: true`)
+   - ✅ Removed defaults from old types (socialPosts, summary, quotes)
+   - ✅ Changed "Generate Content" button to "Submit"
+   - ✅ Clicking Submit triggers only "Overview" prompt
+   - ✅ Updated API to dynamically load prompts from library (not hardcoded)
+   - ✅ Removed icons from content card headers for cleaner design
+   - ✅ Input section stays visible (but disabled) after submission
+   - ✅ Submit button hidden after submission
+   - ✅ Output section displays below input for reference
+
+5. Content prompting
+   - add button to allow view prompt settings for each result card
    - Add additional content types
    - Fine tune prompts to get better results
-   - edit prompt / show underlying prompt & sample
+   - add meta prompt that prevent emojis and humanize ai response
 
 
 **Available Content Types:**
@@ -196,3 +199,21 @@ The core MVP is fully functional:
 - ✅ Error handling
 
 **Ready for:** Polish, testing, and deployment to Vercel
+
+
+
+
+demo video
+1. paste in transcript
+2. click submit
+3. generates overview
+4. click add prompt
+5. browse prompt menu
+6. view a prompt setting
+7. select & run a prompt
+8. regenerated prompt
+9. view versions
+10. copy
+11. view prompt setting
+12. repeat 4-7
+13. click start over
