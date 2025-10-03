@@ -127,6 +127,307 @@ What's stopping you from trying this?`,
     "15:40 - Case study: From one podcast to 30 pieces of content",
     "19:20 - Common mistakes and how to avoid them",
     "22:50 - Action plan: Your next steps"
+  ],
+  // LinkedIn prompts
+  "Punchy LinkedIn Post": `🎯 The productivity trap we all fall into:
+
+We spend hours optimizing workflows, trying new apps, color-coding calendars...
+
+But here's what actually moves the needle:
+
+→ Doing less
+→ Focusing deeper
+→ Protecting your attention
+
+Your todo list doesn't need better organization.
+It needs fewer items.
+
+What's one thing you're going to stop doing this week? 👇
+
+#Productivity #Focus #DeepWork`,
+  "Thought provoking LinkedIn Post": `Here's an uncomfortable truth about modern work:
+
+We've become incredibly efficient at doing things that don't matter.
+
+I see it everywhere:
+• Meetings about meetings
+• Reports no one reads
+• Processes that create more work
+
+The question isn't "How can I do this faster?"
+
+It's "Should I be doing this at all?"
+
+Efficiency is optimizing the wrong work.
+Effectiveness is eliminating it entirely.
+
+Which tasks in your day are just theater? Be honest.
+
+#ProductivityParadox #WorkSmarter #Leadership`,
+  "LinkedIn Post with a Question": `Quick question for the founders and creators here:
+
+How do you decide what NOT to work on?
+
+I'm curious because I find this harder than deciding what TO work on.
+
+Every opportunity looks good on paper. Every idea seems promising.
+
+But saying yes to everything means saying no to focus.
+
+So what's your framework? How do you filter?
+
+Drop your criteria below 👇 I'm taking notes.
+
+#Entrepreneurship #Focus #PrioritizationTips`,
+  // X/Twitter prompts
+  "Punchy X Post": `Productivity tip that changed my life:
+
+Treat attention like money.
+
+You only have so much to spend each day.
+
+Budget it. Track it. Protect it.
+
+Game changer 💡`,
+  "Thought provoking X Post": `Unpopular opinion:
+
+Your productivity problem isn't time management.
+
+It's decision management.
+
+Every choice drains energy.
+Every option creates friction.
+
+Reduce decisions. Protect focus. Win.`,
+  "X Post with a Question": `Be honest:
+
+How many browser tabs do you have open right now?
+
+If it's more than 5, you might have a focus problem 😅
+
+What's your number? 👇`,
+  // YouTube prompts
+  "YouTube Description": `🎥 In this video, I'm sharing the exact productivity system that helped me 3x my output while working fewer hours.
+
+No fluff. No theory. Just practical strategies you can implement today.
+
+🎯 What You'll Learn:
+• The "attention budget" framework
+• How to eliminate 50% of your tasks without guilt
+• Time blocking techniques that actually stick
+• Tools I use daily (most are free)
+
+⏱️ Timestamps:
+0:00 - Why most productivity advice fails
+2:15 - The attention budget concept
+5:40 - Task elimination framework
+9:20 - Time blocking deep dive
+13:45 - My daily tools and systems
+17:30 - Common mistakes to avoid
+20:15 - Your action plan
+
+📚 Resources:
+→ Free productivity template (link in comments)
+→ Task elimination checklist
+→ Recommended tools list
+
+💬 What's your biggest productivity challenge? Drop it in the comments and I'll try to help!
+
+🔔 Subscribe for weekly productivity tips that actually work
+
+#Productivity #TimeManagement #DeepWork #Focus #WorkLifeBalance`,
+  "10 viral YouTube Titles": [
+    "I Deleted 50% of My Todo List and Became More Productive",
+    "The Productivity System That Changed My Life (Not What You Think)",
+    "Stop Optimizing Your Calendar - Do This Instead",
+    "I Tried Every Productivity App. Here's What Actually Works.",
+    "The Uncomfortable Truth About Being Productive",
+    "Why You're Busy But Not Productive (And How to Fix It)",
+    "My Brutally Simple Productivity System (Step by Step)",
+    "The ONE Habit That 10x'd My Focus",
+    "Productive People Don't Use Todo Lists (Here's What They Do)",
+    "I Quit These 5 Things and Got My Life Back"
+  ],
+  "Timestamped Overview": [
+    "0:00 - Introduction: The productivity paradox",
+    "2:15 - Problem: Why we're busy but not productive",
+    "5:30 - Concept: Attention as a limited resource",
+    "8:45 - Framework: Task elimination vs optimization",
+    "12:20 - Strategy: Time blocking fundamentals",
+    "15:40 - Tools: What I actually use daily",
+    "18:30 - Mistakes: Common productivity traps to avoid",
+    "21:15 - Action plan: Your next steps",
+    "23:00 - Recap and final thoughts"
+  ],
+  // Podcast prompts
+  "Podcast Episode Summary": `## Episode Summary
+
+This episode explores the often-overlooked distinction between being busy and being productive. We dive deep into why traditional productivity advice fails and introduce the "attention budget" framework—treating your focus as a finite resource you must carefully allocate.
+
+## Key Discussion Points
+
+• The productivity paradox: why doing more often means achieving less
+• Attention as a scarce resource that should be budgeted like money
+• The power of task elimination over task optimization
+• Time blocking strategies that actually work in real life
+• Common productivity traps that keep us spinning our wheels
+
+## Main Takeaways
+
+1. **Quality over quantity**: Focusing on fewer, high-impact tasks drives better results than spreading yourself thin
+2. **Attention is finite**: Treat your focus like a daily budget you can't exceed
+3. **Elimination > Optimization**: Question whether tasks need to exist before trying to do them faster
+4. **Protection is key**: Build systems that defend your focus from constant interruptions
+
+## Guest Information
+[Insert guest details if applicable]
+
+## Resources Mentioned
+• Productivity template
+• Task elimination framework
+• Recommended tools and apps`,
+  "Podcast Episode Show Notes": `📋 Episode Show Notes
+
+In this episode, we challenge conventional productivity wisdom and introduce a framework that prioritizes attention management over time management.
+
+⏱️ Timestamps
+• 0:00 - Introduction
+• 3:15 - The busy vs productive distinction
+• 8:30 - Introducing the attention budget
+• 15:45 - Task elimination strategies
+• 23:20 - Time blocking deep dive
+• 31:40 - Tools and systems
+• 38:15 - Q&A and listener questions
+• 45:30 - Closing thoughts
+
+🎯 Key Topics
+→ Attention budget framework
+→ Task elimination vs optimization
+→ Time blocking strategies
+→ Productivity tool recommendations
+→ Common mistakes and how to avoid them
+
+📚 Resources
+→ Free productivity template: [link]
+→ Task elimination checklist: [link]
+→ Recommended tools list: [link]
+
+💬 Guest: [Name and bio if applicable]
+
+🔗 Connect
+→ Subscribe: [link]
+→ Follow on social: [links]
+→ Join the community: [link]
+
+📩 Got questions? Email us at: [email]
+
+#Productivity #Podcast #TimeManagement`,
+  "Eye catching Podcast titles": [
+    "The Productivity Lie: Why Doing Less Achieves More",
+    "Your Attention is Bleeding (And How to Stop It)",
+    "Delete Your Todo List: A Radical Productivity Experiment",
+    "The Focus Economy: Treating Attention Like Money",
+    "Busy is Broken: Rethinking Modern Productivity",
+    "The Elimination Method: Productive by Subtraction",
+    "Protect Your Focus Like Your Life Depends On It",
+    "Beyond Time Management: The Attention Revolution",
+    "Stop Optimizing Everything (Do This Instead)",
+    "The Uncomfortable Truth About Getting Things Done"
+  ],
+  // Blog prompts
+  "Blog Post": `# The Productivity Trap: Why Doing Less Might Be Your Best Strategy
+
+## Introduction
+
+We've all been there. Color-coded calendars. Perfectly organized task lists. The latest productivity app promising to revolutionize our workflow. Yet somehow, we still feel overwhelmed, stretched thin, and no closer to our goals.
+
+What if the problem isn't that we need better systems? What if we're optimizing the wrong things entirely?
+
+## The Busy-Productive Paradox
+
+Modern work culture has conflated being busy with being productive. We wear our packed calendars like badges of honor, measuring our worth by how many meetings we attend and tasks we check off.
+
+But here's the uncomfortable truth: **efficiency is meaningless if you're efficient at the wrong things.**
+
+## Introducing the Attention Budget
+
+Think about your attention the way you think about money. You wake up each day with a fixed amount. Every task, every decision, every notification spends from that account.
+
+The question isn't "How can I do more?"
+
+It's "What deserves my limited attention?"
+
+### The Framework
+
+1. **Track your spending**: Where does your attention actually go?
+2. **Identify waste**: What tasks exist purely out of habit or obligation?
+3. **Ruthlessly cut**: Eliminate before you optimize
+4. **Protect what matters**: Build systems that defend your focus
+
+## Task Elimination vs. Task Optimization
+
+We've been taught to optimize. Find shortcuts. Work faster. But optimization assumes the task should exist in the first place.
+
+**The better question**: Should I be doing this at all?
+
+### The Elimination Test
+
+Before adding anything to your plate, ask:
+- What happens if I don't do this?
+- Who actually benefits from this?
+- Does this move me toward my goals?
+- Am I doing this out of obligation or impact?
+
+If you can't clearly articulate the value, it probably doesn't belong on your list.
+
+## Time Blocking That Actually Works
+
+Time blocking fails for most people because they try to block every minute. Life doesn't work that way.
+
+Instead:
+- **Block 2-3 hours** for deep work daily (non-negotiable)
+- **Leave buffer space** for the unexpected
+- **Batch similar tasks** to reduce context switching
+- **Protect your blocks** like you'd protect a client meeting
+
+## Common Productivity Traps
+
+### Trap #1: Tool Hopping
+Switching apps won't solve a strategy problem.
+
+### Trap #2: Over-Planning
+Spending more time organizing tasks than doing them.
+
+### Trap #3: Meeting Culture
+Defaulting to meetings when async communication would work.
+
+### Trap #4: The Urgency Addiction
+Prioritizing what's urgent over what's important.
+
+## Conclusion
+
+Productivity isn't about doing more. It's about doing what matters.
+
+Your attention is finite. Your time is limited. Your energy is precious.
+
+Stop trying to fit more into your day. Start questioning what deserves to be there in the first place.
+
+The path to getting more done isn't addition. It's subtraction.
+
+---
+
+*What's one thing you're going to eliminate this week? I'd love to hear in the comments below.*`,
+  "Blog Post Titles": [
+    "The Productivity Trap: Why Doing Less Achieves More",
+    "Your Attention is a Budget. Here's How to Spend It Wisely.",
+    "Stop Optimizing Your Todo List (Do This Instead)",
+    "The Elimination Method: Getting Productive by Subtraction",
+    "Why Busy People Aren't Productive People (And How to Fix It)",
+    "The Focus Economy: Treating Attention Like Your Most Valuable Asset",
+    "Task Management is Dead. Long Live Task Elimination.",
+    "The Uncomfortable Truth About Modern Productivity",
+    "Beyond Time Blocking: A Better Framework for Deep Work",
+    "How to Get More Done by Doing Less (No, Really)"
   ]
 };
 
@@ -144,11 +445,17 @@ export async function POST(request: Request) {
     // Use mock data in test mode
     if (TEST_MODE) {
       console.log('⚠️ TEST MODE: Using mock data instead of API call');
+      console.log('  Requested contentType:', contentType);
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       if (contentType) {
-        return NextResponse.json({ [contentType]: MOCK_DATA[contentType] });
+        const mockContent = MOCK_DATA[contentType];
+        if (mockContent === undefined) {
+          console.warn(`⚠️  No mock data found for contentType: "${contentType}"`);
+          console.warn('  Available keys:', Object.keys(MOCK_DATA));
+        }
+        return NextResponse.json({ [contentType]: mockContent });
       } else {
         return NextResponse.json(MOCK_DATA);
       }

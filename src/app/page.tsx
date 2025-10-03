@@ -7,17 +7,13 @@ import { ContentCard } from "@/components/ContentCard";
 import { BottomActionWidget } from "@/components/BottomActionWidget";
 import { getDefaultContentTypes, CONTENT_TYPES } from "@/config/contentTypes";
 
-// Dynamic state types
-interface ContentHistory {
-  [contentTypeId: string]: (string[] | string)[];
-}
-
-interface LoadingState {
-  [contentTypeId: string]: boolean;
-}
-
-interface CurrentVersions {
-  [contentTypeId: string]: number;
+// Card instance type
+interface CardInstance {
+  id: string; // unique instance ID
+  contentTypeId: string; // the prompt/content type
+  history: (string[] | string)[]; // version history
+  currentVersion: number;
+  isLoading: boolean;
 }
 
 export default function Home() {
@@ -27,20 +23,18 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Track which content types are active
-  const [activeContentTypes, setActiveContentTypes] = useState<string[]>(
-    getDefaultContentTypes()
-  );
+  // Track card instances (allows multiple instances of same content type)
+  const [cardInstances, setCardInstances] = useState<CardInstance[]>([]);
 
-  // Dynamic state management
-  const [contentHistory, setContentHistory] = useState<ContentHistory>({});
-  const [loadingState, setLoadingState] = useState<LoadingState>({});
-  const [currentVersions, setCurrentVersions] = useState<CurrentVersions>({});
-
-  const generateContent = async (contentTypeId: string) => {
+  const generateContent = async (instanceId: string, contentTypeId: string) => {
     if (transcript.trim().length === 0) return;
 
-    setLoadingState((prev) => ({ ...prev, [contentTypeId]: true }));
+    // Set loading state for this instance
+    setCardInstances((prev) =>
+      prev.map((card) =>
+        card.id === instanceId ? { ...card, isLoading: true } : card
+      )
+    );
     setError(null);
 
     try {
@@ -59,25 +53,29 @@ export default function Home() {
       const data = await response.json();
       const newContent = data[contentTypeId];
 
-      // Add to history and jump to newest version
-      setContentHistory((prev) => {
-        const updatedHistory = {
-          ...prev,
-          [contentTypeId]: [...(prev[contentTypeId] || []), newContent],
-        };
-
-        // Set current version to the newest (last index)
-        setCurrentVersions((prevVersions) => ({
-          ...prevVersions,
-          [contentTypeId]: updatedHistory[contentTypeId].length - 1,
-        }));
-
-        return updatedHistory;
-      });
+      // Add to this instance's history and jump to newest version
+      setCardInstances((prev) =>
+        prev.map((card) => {
+          if (card.id === instanceId) {
+            const updatedHistory = [...card.history, newContent];
+            return {
+              ...card,
+              history: updatedHistory,
+              currentVersion: updatedHistory.length - 1,
+              isLoading: false,
+            };
+          }
+          return card;
+        })
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
-      setLoadingState((prev) => ({ ...prev, [contentTypeId]: false }));
+      // Clear loading state on error
+      setCardInstances((prev) =>
+        prev.map((card) =>
+          card.id === instanceId ? { ...card, isLoading: false } : card
+        )
+      );
     }
   };
 
@@ -87,9 +85,23 @@ export default function Home() {
     setShowResults(true);
     setError(null);
 
-    // Generate default content types in parallel
+    // Create card instances for default content types
+    const defaultTypes = getDefaultContentTypes();
+    const newInstances: CardInstance[] = defaultTypes.map((typeId) => ({
+      id: `${typeId}-${Date.now()}-${Math.random()}`,
+      contentTypeId: typeId,
+      history: [],
+      currentVersion: 0,
+      isLoading: true,
+    }));
+
+    setCardInstances(newInstances);
+
+    // Generate content for each instance
     await Promise.all(
-      getDefaultContentTypes().map((typeId) => generateContent(typeId))
+      newInstances.map((instance) =>
+        generateContent(instance.id, instance.contentTypeId)
+      )
     );
   };
 
@@ -103,47 +115,54 @@ export default function Home() {
     }
   };
 
-  const regenerate = async (contentTypeId: string) => {
-    await generateContent(contentTypeId);
+  const regenerate = async (instanceId: string, contentTypeId: string) => {
+    await generateContent(instanceId, contentTypeId);
   };
 
-  const changeVersion = (contentTypeId: string, direction: "prev" | "next") => {
-    const history = contentHistory[contentTypeId] || [];
-    if (history.length === 0) return;
-
-    setCurrentVersions((prev) => ({
-      ...prev,
-      [contentTypeId]:
-        direction === "next"
-          ? Math.min((prev[contentTypeId] || 0) + 1, history.length - 1)
-          : Math.max((prev[contentTypeId] || 0) - 1, 0),
-    }));
+  const changeVersion = (instanceId: string, direction: "prev" | "next") => {
+    setCardInstances((prev) =>
+      prev.map((card) => {
+        if (card.id === instanceId) {
+          const newVersion =
+            direction === "next"
+              ? Math.min(card.currentVersion + 1, card.history.length - 1)
+              : Math.max(card.currentVersion - 1, 0);
+          return { ...card, currentVersion: newVersion };
+        }
+        return card;
+      })
+    );
   };
 
   const handleStartOver = () => {
     setTranscript("");
-    setContentHistory({});
-    setCurrentVersions({});
-    setLoadingState({});
-    setActiveContentTypes(getDefaultContentTypes());
+    setCardInstances([]);
     setShowResults(false);
     setError(null);
   };
 
   const handlePromptSelect = (promptId: string) => {
-    // Add the new content type to active list
-    setActiveContentTypes((prev) => [...prev, promptId]);
+    // Create a new card instance for this prompt
+    const newInstance: CardInstance = {
+      id: `${promptId}-${Date.now()}-${Math.random()}`,
+      contentTypeId: promptId,
+      history: [],
+      currentVersion: 0,
+      isLoading: true,
+    };
+
+    setCardInstances((prev) => [...prev, newInstance]);
 
     // Immediately start generating content for it
-    generateContent(promptId);
+    generateContent(newInstance.id, promptId);
 
     // Auto-scroll to bottom to show new card
     setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
   };
 
-  const isGenerating = Object.values(loadingState).some((loading) => loading);
+  const isGenerating = cardInstances.some((card) => card.isLoading);
 
   return (
     <div className="min-h-screen p-4 sm:p-8">
@@ -255,24 +274,22 @@ export default function Home() {
                 <h2 className="text-2xl font-semibold tracking-tight">Output</h2>
               </div>
               <div className="space-y-6">
-                {activeContentTypes.map((contentTypeId) => {
-                  const history = contentHistory[contentTypeId] || [];
-                  const currentVersion = currentVersions[contentTypeId] || 0;
-                  const currentContent = history[currentVersion] || null;
+                {cardInstances.map((card) => {
+                  const currentContent = card.history[card.currentVersion] || null;
 
                   return (
                     <ContentCard
-                      key={contentTypeId}
-                      contentTypeId={contentTypeId}
+                      key={card.id}
+                      contentTypeId={card.contentTypeId}
                       content={currentContent}
-                      isLoading={loadingState[contentTypeId] || false}
-                      currentVersion={currentVersion}
-                      totalVersions={history.length}
+                      isLoading={card.isLoading}
+                      currentVersion={card.currentVersion}
+                      totalVersions={card.history.length}
                       copiedId={copiedId}
                       onCopy={copyToClipboard}
-                      onRegenerate={() => regenerate(contentTypeId)}
+                      onRegenerate={() => regenerate(card.id, card.contentTypeId)}
                       onVersionChange={(direction) =>
-                        changeVersion(contentTypeId, direction)
+                        changeVersion(card.id, direction)
                       }
                     />
                   );
@@ -288,7 +305,7 @@ export default function Home() {
         <BottomActionWidget
           onPromptSelect={handlePromptSelect}
           onStartOver={handleStartOver}
-          activeContentTypes={activeContentTypes}
+          activeContentTypes={cardInstances.map((card) => card.contentTypeId)}
         />
       )}
     </div>

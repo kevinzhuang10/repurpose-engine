@@ -45,8 +45,10 @@ export function PromptLibraryModal({
   };
 
   const handleRunPrompt = (promptName: string) => {
-    // For now, use promptName as the ID
-    // TODO: Update to use proper prompt IDs
+    // Close the modal first
+    onOpenChange(false);
+
+    // Trigger the prompt selection which will generate content
     onSelect(promptName);
   };
 
