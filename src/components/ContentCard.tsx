@@ -6,6 +6,7 @@ import {
   RefreshCw,
   ChevronLeft,
   ChevronRight,
+  Eye,
 } from "lucide-react";
 import {
   Tooltip,
@@ -24,6 +25,7 @@ interface ContentCardProps {
   onCopy: (text: string, id: string) => void;
   onRegenerate: () => void;
   onVersionChange: (direction: "prev" | "next") => void;
+  onViewPromptSettings: () => void;
 }
 
 export function ContentCard({
@@ -36,6 +38,7 @@ export function ContentCard({
   onCopy,
   onRegenerate,
   onVersionChange,
+  onViewPromptSettings,
 }: ContentCardProps) {
   const contentType = CONTENT_TYPES[contentTypeId];
 
@@ -91,6 +94,19 @@ export function ContentCard({
               </TooltipContent>
             </Tooltip>
           )}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={onViewPromptSettings}
+                className="p-2 rounded-md hover:bg-muted transition-colors"
+              >
+                <Eye className="w-4 h-4 text-muted-foreground" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>View prompt settings</p>
+            </TooltipContent>
+          </Tooltip>
           {totalVersions > 0 && (
             <div className="flex items-center gap-1 ml-2 px-2 py-1 rounded-md bg-muted/50">
               <Tooltip>

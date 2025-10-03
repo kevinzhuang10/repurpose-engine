@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Upload, FileText } from "lucide-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ContentCard } from "@/components/ContentCard";
 import { BottomActionWidget } from "@/components/BottomActionWidget";
+import { PromptConfigModal } from "@/components/PromptConfigModal";
 import { getDefaultContentTypes, CONTENT_TYPES } from "@/config/contentTypes";
+import type { Prompt, PromptLibrary } from "@/types/promptLibrary";
 
 // Card instance type
 interface CardInstance {
@@ -27,6 +29,21 @@ export default function Home() {
 
   // Track card instances (allows multiple instances of same content type)
   const [cardInstances, setCardInstances] = useState<CardInstance[]>([]);
+
+  // Prompt settings modal state
+  const [promptLibrary, setPromptLibrary] = useState<PromptLibrary | null>(null);
+  const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
+  const [promptSettingsOpen, setPromptSettingsOpen] = useState(false);
+
+  // Load prompt library on mount
+  useEffect(() => {
+    fetch("/prompt-library.json")
+      .then((res) => res.json())
+      .then((data: PromptLibrary) => {
+        setPromptLibrary(data);
+      })
+      .catch((err) => console.error("Failed to load prompt library:", err));
+  }, []);
 
   const generateContent = async (instanceId: string, contentTypeId: string) => {
     if (transcript.trim().length === 0) return;
@@ -162,6 +179,26 @@ export default function Home() {
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
+  };
+
+  const handleViewPromptSettings = (contentTypeId: string) => {
+    if (!promptLibrary) return;
+
+    // Find the prompt in the library by matching promptName to contentTypeId
+    let foundPrompt: Prompt | null = null;
+
+    for (const category of promptLibrary.useCaseCategories) {
+      const prompt = category.prompts.find((p) => p.promptName === contentTypeId);
+      if (prompt) {
+        foundPrompt = prompt;
+        break;
+      }
+    }
+
+    if (foundPrompt) {
+      setSelectedPrompt(foundPrompt);
+      setPromptSettingsOpen(true);
+    }
   };
 
   const isGenerating = cardInstances.some((card) => card.isLoading);
@@ -305,6 +342,9 @@ export default function Home() {
                       onVersionChange={(direction) =>
                         changeVersion(card.id, direction)
                       }
+                      onViewPromptSettings={() =>
+                        handleViewPromptSettings(card.contentTypeId)
+                      }
                     />
                   );
                 })}
@@ -322,6 +362,13 @@ export default function Home() {
           activeContentTypes={cardInstances.map((card) => card.contentTypeId)}
         />
       )}
+
+      {/* Prompt Settings Modal */}
+      <PromptConfigModal
+        open={promptSettingsOpen}
+        onOpenChange={setPromptSettingsOpen}
+        prompt={selectedPrompt}
+      />
     </div>
   );
 }
